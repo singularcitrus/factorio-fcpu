@@ -1,0 +1,27 @@
+:loop
+
+fid reg1 green [fluid=steam]
+fid reg2 green [item=uranium-fuel-cell]
+
+mov out2 1[virtual-signal=signal-L]
+
+blt reg2 12 :stage
+blt reg1 150000 :react
+jmp :done
+
+:stage
+mov out2 0
+slp 600
+jmp :done
+
+:react
+slp 20
+mov out1 1[item=nuclear-reactor]
+slp 20
+mov out1 0
+slp 12000
+jmp :done
+
+:done
+
+jmp :loop
